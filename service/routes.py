@@ -61,14 +61,25 @@ def create_accounts():
 # LIST ALL ACCOUNTS
 ######################################################################
 
-# ... place you code here to LIST accounts ...
+# ... place you code here to READ an account ...
 
 
 ######################################################################
 # READ AN ACCOUNT
 ######################################################################
+@app.route("/accounts/<int:account_id>", methods=["GET"])
+def get_accounts(account_id):
+    """
+    Read an account
+    This ednpoint will read an account based on the account ID
+    """
+    app.logger.info("Request to read an Account with id: %s", account_id)
 
-# ... place you code here to READ an account ...
+    account = Account.find(account_id)
+    if not account:
+        abort(status.HTTP_404_NOT_FOUND, f"Account with id [{account_id}] could not be found.")
+    
+    return account.serialize(), status.HTTP_200_OK
 
 
 ######################################################################
