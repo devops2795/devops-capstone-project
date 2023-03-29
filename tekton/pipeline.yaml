@@ -72,7 +72,7 @@ spec:
           workspace: pipeline-workspace
       taskRef:
         name: buildah
-        kind: CLusterTask
+        kind: ClusterTask
       params:
       - name: IMAGE
         value: "$(params.build-image)"
